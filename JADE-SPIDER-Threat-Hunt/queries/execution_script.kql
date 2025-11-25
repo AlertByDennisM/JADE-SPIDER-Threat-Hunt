@@ -1,0 +1,6 @@
+// Execution - Identify malicious PowerShell script (wupdate.ps1)
+DeviceFileEvents
+| where DeviceName == "azuki-sl"
+| where FileName =~ "wupdate.ps1"
+| project Timestamp, FileName, FolderPath, InitiatingProcessFileName
+| order by Timestamp asc
