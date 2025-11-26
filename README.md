@@ -184,7 +184,7 @@ JADE-SPIDER-Threat-Hunt/
 | Exfiltration | Web service (Discord webhook) | **T1567.002** |
 
 For a full narrative-style write-up, see:  
-👉 `report/JADE-SPIDER-Report.md`
+👉 `report/JADE-SPIDER-Report.md` https://github.com/AlertByDennisM/JADE-SPIDER-Threat-Hunt/blob/main/report/JADE-SPIDER-Report.md
 
 ---
 
