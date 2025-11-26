@@ -1,0 +1,21 @@
+IPs
+----
+10.0.8.9          # Initial attacker IP (RDP source)
+10.1.0.188        # Lateral movement target
+162.159.135.232   # Discord CDN / webhook endpoint (example from lab)
+
+Files
+-----
+wupdate.ps1       # Malicious PowerShell script
+mm.exe            # Credential dumping tool
+svchost.exe       # Malicious persistence binary (fake name)
+export-data.zip   # Data archive used for exfiltration
+
+Accounts
+--------
+kenji.sato        # Compromised user account
+support           # Backdoor local admin account
+
+Domains
+-------
+discord.com       # Exfiltration channel via webhook

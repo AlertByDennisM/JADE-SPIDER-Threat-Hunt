@@ -1,0 +1,7 @@
+// Lateral Movement - cmdkey + mstsc usage
+
+DeviceProcessEvents
+| where DeviceName == "azuki-sl"
+| where FileName in~ ("cmdkey.exe", "mstsc.exe")
+| project Timestamp, FileName, ProcessCommandLine, InitiatingProcessAccountName
+| order by Timestamp asc

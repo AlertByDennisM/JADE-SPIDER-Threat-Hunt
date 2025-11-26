@@ -1,0 +1,6 @@
+// Initial Access - RDP logon to azuki-sl
+DeviceLogonEvents
+| where DeviceName == "azuki-sl"
+| where LogonType == 10   // RemoteInteractive (RDP)
+| project Timestamp, AccountName, RemoteIP, LogonType
+| order by Timestamp asc

@@ -1,0 +1,32 @@
+High-Level Attack Flow (JADE SPIDER - Azuki Scenario)
+
+1. Initial Access
+   - Attacker connects via RDP from 10.0.8.9 to azuki-sl.
+   - Uses valid credentials for user 'kenji.sato'.
+
+2. Execution
+   - Attacker creates and runs PowerShell script 'wupdate.ps1'.
+   - Script appears to automate later stages (AV exclusion, downloads, etc.).
+
+3. Defense Evasion
+   - Windows Defender exclusions are added to avoid scanning staged tools.
+   - Tools and data are stored in C:\ProgramData\WindowsCache.
+   - Event logs (Security, System, Application) are cleared near the end.
+
+4. Credential Access
+   - Attacker downloads mm.exe into the staging directory.
+   - mm.exe executes a Mimikatz-like module: sekurlsa::logonpasswords.
+   - LSASS credentials are dumped for further use.
+
+5. Persistence
+   - Local account 'support' is created via net.exe/net1.exe.
+   - support is added to the Local Administrators group, acting as a backdoor.
+
+6. Collection & Exfiltration
+   - Sensitive data is collected and compressed into export-data.zip.
+   - curl.exe is used to send the ZIP archive to a Discord webhook over HTTPS.
+
+7. Lateral Movement Attempt
+   - cmdkey.exe stores credentials for 10.1.0.188.
+   - mstsc.exe /v:10.1.0.188 is used to attempt an RDP connection.
+   - Indicates attempt to pivot deeper into the environment.

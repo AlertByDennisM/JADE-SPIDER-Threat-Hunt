@@ -1,0 +1,16 @@
+// Defense Evasion - Windows Defender exclusions & log clearing
+
+// Part 1: Defender exclusions (paths/extensions)
+DeviceRegistryEvents
+| where DeviceName == "azuki-sl"
+| where RegistryKey has @"Windows Defender\Exclusions"
+| project Timestamp, RegistryKey, RegistryValueName, RegistryValueData, ActionType
+| order by Timestamp asc
+
+// Part 2: Log clearing via wevtutil
+DeviceProcessEvents
+| where DeviceName == "azuki-sl"
+| where FileName =~ "wevtutil.exe"
+| where ProcessCommandLine has " cl "
+| project Timestamp, FileName, ProcessCommandLine
+| order by Timestamp asc
