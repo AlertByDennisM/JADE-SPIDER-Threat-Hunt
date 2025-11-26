@@ -2,7 +2,7 @@
 
 *A guided investigation of a simulated JADE SPIDER intrusion using Microsoft Defender for Endpoint (MDE) and Kusto Query Language (KQL).*
 
-![Repo Banner](images/banner.png)
+![Repo Banner](banner.png)
 
 ---
 
