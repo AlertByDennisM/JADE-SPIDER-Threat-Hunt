@@ -1,1 +1,17 @@
+// Persistence - Backdoor local admin account (support)
 
+// Look for local user creation
+DeviceProcessEvents
+| where DeviceName == "azuki-sl"
+| where FileName in~ ("net.exe", "net1.exe")
+| where ProcessCommandLine has " user " and ProcessCommandLine has " /add"
+| project Timestamp, FileName, ProcessCommandLine
+| order by Timestamp asc
+
+// Look for Administrators group membership changes
+DeviceProcessEvents
+| where DeviceName == "azuki-sl"
+| where FileName in~ ("net.exe", "net1.exe")
+| where ProcessCommandLine has " localgroup " and ProcessCommandLine has "Administrators"
+| project Timestamp, FileName, ProcessCommandLine
+| order by Timestamp asc
