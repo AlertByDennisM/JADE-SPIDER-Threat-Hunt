@@ -1,1 +1,10 @@
+// Exfiltration - curl.exe to Discord webhook (HTTPS C2 / exfil)
 
+// Look for curl usage with external destinations
+DeviceProcessEvents
+| where DeviceName == "azuki-sl"
+| where FileName =~ "curl.exe"
+| project Timestamp, FileName, ProcessCommandLine
+| order by Timestamp asc
+
+// (Optional) Join with DeviceNetworkEvents if available in your environment
